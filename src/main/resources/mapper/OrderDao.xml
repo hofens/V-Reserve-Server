@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hofe.reservation.dao.OrderDao">
+
+    <resultMap type="com.hofe.reservation.entity.Order" id="OrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="idcard" column="IDcard" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="serviceId" column="service_Id" jdbcType="INTEGER"/>
+        <result property="reserveTakeTime" column="reserve_take_time" jdbcType="VARCHAR"/>
+        <result property="serialNum" column="serial_num" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderMap">
+        select
+          id, IDcard, phone, service_Id, reserve_take_time, serial_num
+        from reserve.order
+        where id = #{id}
+    </select>
+
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderMap">
+        select
+          id, IDcard, phone, service_Id, reserve_take_time, serial_num
+        from reserve.order
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OrderMap">
+        select
+          id, IDcard, phone, service_Id, reserve_take_time, serial_num
+        from reserve.order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="idcard != null and idcard != ''">
+                and IDcard = #{idcard}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="serviceId != null">
+                and service_Id = #{serviceId}
+            </if>
+            <if test="reserveTakeTime != null and reserveTakeTime != ''">
+                and reserve_take_time = #{reserveTakeTime}
+            </if>
+            <if test="serialNum != null and serialNum != ''">
+                and serial_num = #{serialNum}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into reserve.order(IDcard, phone, service_Id, reserve_take_time, serial_num)
+        values (#{idcard}, #{phone}, #{serviceId}, #{reserveTakeTime}, #{serialNum})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update reserve.order
+        <set>
+            <if test="idcard != null and idcard != ''">
+                IDcard = #{idcard},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="serviceId != null">
+                service_Id = #{serviceId},
+            </if>
+            <if test="reserveTakeTime != null and reserveTakeTime != ''">
+                reserve_take_time = #{reserveTakeTime},
+            </if>
+            <if test="serialNum != null and serialNum != ''">
+                serial_num = #{serialNum},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from reserve.order where id = #{id}
+    </delete>
+
+</mapper>

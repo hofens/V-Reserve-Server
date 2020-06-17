@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hofe.reservation.dao.BusinessDao">
+
+    <resultMap type="com.hofe.reservation.entity.Business" id="BusinessMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="serviceName" column="service_name" jdbcType="VARCHAR"/>
+        <result property="reserveNum" column="reserve_num" jdbcType="INTEGER"/>
+        <result property="residualNum" column="residual_num" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BusinessMap">
+        select
+          id, service_name, reserve_num, residual_num
+        from reserve.business
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BusinessMap">
+        select
+          id, service_name, reserve_num, residual_num
+        from reserve.business
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BusinessMap">
+        select
+          id, service_name, reserve_num, residual_num
+        from reserve.business
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="serviceName != null and serviceName != ''">
+                and service_name = #{serviceName}
+            </if>
+            <if test="reserveNum != null">
+                and reserve_num = #{reserveNum}
+            </if>
+            <if test="residualNum != null">
+                and residual_num = #{residualNum}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into reserve.business(service_name, reserve_num, residual_num)
+        values (#{serviceName}, #{reserveNum}, #{residualNum})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update reserve.business
+        <set>
+            <if test="serviceName != null and serviceName != ''">
+                service_name = #{serviceName},
+            </if>
+            <if test="reserveNum != null">
+                reserve_num = #{reserveNum},
+            </if>
+            <if test="residualNum != null">
+                residual_num = #{residualNum},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from reserve.business where id = #{id}
+    </delete>
+
+    <update id="updateByNum">
+        UPDATE reserve.business
+        SET business.reserve_num = business.reserve_num + #{num}
+        ,business.residual_num = business.residual_num - 1
+        WHERE business.id = #{idd}
+
+    </update>
+</mapper>
