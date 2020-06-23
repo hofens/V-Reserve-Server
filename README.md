@@ -114,7 +114,6 @@ Ubuntu 18.04
 
 
 
-
 ### 四、演示
 
 #### 4.1 预约客户端
@@ -123,15 +122,19 @@ Ubuntu 18.04
 
 <img src="https://gitee.com/hofe/graph/raw/master/img/20200610143821.png" style="zoom: 50%;" />
 
-点击要办理的具体业务，顶部会显示业务类型、已预约人数、余票，余票数量为0则不可再进行预约
 
+
+点击要办理的具体业务，顶部会显示业务类型、已预约人数、余票，余票数量为0则不可再进行预约;
+
+余量充足的情况下可进行预约，并得到预约编号。
+
+<div>
 <img src="https://gitee.com/hofe/graph/raw/master/img/20200610144123.png" style="zoom:50%;" />
-
-
-
-余量充足的情况下可进行预约，并得到预约编号
-
 <img src="https://gitee.com/hofe/graph/raw/master/img/20200610144243.png" style="zoom:50%;" />
+
+
+
+
 
 #### 4.2 预约历史
 
@@ -143,27 +146,18 @@ Ubuntu 18.04
 
 #### 4.3 取票客户端
 
-分为现场取票部分和预约取票两部分
+分为现场取票部分和预约取票两部分。现场取票通过选择业务进行取号；预约取票通过输入身份证号码进行取票
 
-现场取票通过选择业务进行取号
-
-<img src="https://gitee.com/hofe/graph/raw/master/img/20200610144601.png" style="zoom:50%;" />
-
-预约取票通过输入身份证号码进行取票
-
-<img src="https://gitee.com/hofe/graph/raw/master/img/20200610144754.png" style="zoom:50%;" />
+，未预约则提示无预约记录，取票成功之后可发现，记录已经删除
 
 
 
-未预约则提示无预约记录
+<div>
+    <img src="https://gitee.com/hofe/graph/raw/master/img/20200610144601.png" style="zoom:50%;" />
+    <img src="https://gitee.com/hofe/graph/raw/master/img/20200610144754.png" style="zoom:50%;" />
+    <img src="https://gitee.com/hofe/graph/raw/master/img/20200610144850.png" style="zoom:50%;" />
+    <img src="https://gitee.com/hofe/graph/raw/master/img/20200610145000.png" style="zoom:50%;" />
 
-<img src="https://gitee.com/hofe/graph/raw/master/img/20200610144850.png" style="zoom:50%;" />
-
-
-
-取票成功之后可发现，记录已经删除
-
-<img src="https://gitee.com/hofe/graph/raw/master/img/20200610145000.png" style="zoom:50%;" />
 
 
 
